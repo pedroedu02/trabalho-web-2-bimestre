@@ -33,7 +33,6 @@ router.post("/", async (req, res) => {
   const { nome, descricao, cor, peso, tipo, preco } = req.body;
   if (!nome || !preco) {
     return res.status(400).json({
-      success: false,
       error: "Nome e preço são obrigatórios",
     });
   }
@@ -52,7 +51,6 @@ router.post("/", async (req, res) => {
   } catch (err) {
     console.error("Erro ao criar produto:", err);
     res.status(500).json({
-      success: false,
       error: "Erro interno.",
     });
   }
@@ -63,7 +61,6 @@ router.put("/:id", async (req, res) => {
   const { nome, descricao, cor, peso, tipo, preco } = req.body;
   if (!nome || !preco) {
     return res.status(400).json({
-      success: false,
       error: "Nome e preço são obrigatórios",
     });
   }
@@ -82,7 +79,7 @@ router.put("/:id", async (req, res) => {
     if (!produtoAtualizado) {
       return res
         .status(404)
-        .json({ success: false, error: "Produto não encontrado." });
+        .json({ error: "Produto não encontrado." });
     }
     res.status(200).json({
       produtoAtualizado,
@@ -90,7 +87,6 @@ router.put("/:id", async (req, res) => {
   } catch (err) {
     console.error("Erro ao atualizar produto:", err);
     res.status(500).json({
-      success: false,
       error: "Erro interno.",
     });
   }
@@ -107,7 +103,6 @@ router.delete("/:id", async (req, res) => {
   } catch (err) {
     console.error("Erro ao deletar produto:", err);
     res.status(500).json({
-      success: false,
       error: "Erro interno.",
     });
   }
